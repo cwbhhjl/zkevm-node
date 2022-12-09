@@ -9,7 +9,6 @@ import (
 
 	"github.com/0xPolygonHermez/zkevm-node/aggregator/pb"
 	"github.com/0xPolygonHermez/zkevm-node/config/types"
-	"github.com/0xPolygonHermez/zkevm-node/log"
 )
 
 var (
@@ -74,13 +73,12 @@ func (p *Prover) Status() (*pb.GetStatusResponse, error) {
 }
 
 // IsIdle returns true if the prover is idling.
-func (p *Prover) IsIdle() bool {
+func (p *Prover) IsIdle() (bool, error) {
 	status, err := p.Status()
 	if err != nil {
-		log.Warnf("Error asking status for prover ID %s: %w", p.ID(), err)
-		return false
+		return false, fmt.Errorf("Error asking status for prover ID [%s]: %w", p.ID(), err)
 	}
-	return status.Status == pb.GetStatusResponse_IDLE
+	return status.Status == pb.GetStatusResponse_IDLE, nil
 }
 
 // BatchProof instructs the prover to generate a batch proof for the provided

@@ -17,7 +17,7 @@ import (
 type proverInterface interface {
 	ID() string
 	Addr() string
-	IsIdle() bool
+	IsIdle() (bool, error)
 	BatchProof(input *pb.InputProver) (*string, error)
 	AggregatedProof(inputProof1, inputProof2 string) (*string, error)
 	FinalProof(inputProof string, aggregatorAddr string) (*string, error)
