@@ -129,3 +129,5 @@ require (
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 )
+
+replace github.com/ethereum/go-ethereum => github.com/cwbhhjl/go-ethereum v1.10.20-0.20230104160515-d8425dc5bbc9
